@@ -9,16 +9,13 @@ handlers:
     class: logging.StreamHandler
     formatter: simple
   file:
-    class: logging.FileHandler
+    class: logging.handlers.RotatingFileHandler
     formatter: complex
     filename: "log.log"
-    mode: w
-loggers:
-  logger:
-    level: DEBUG
-    handlers: [console, file]
-    propagate: no
+    mode: a
+    maxBytes: 5000000
+    backupCount: 3
 root:
-  level: INFO
+  level: CRITICAL
   handlers: [console, file]
 disable_existing_loggers: false
