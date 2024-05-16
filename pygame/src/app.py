@@ -19,19 +19,23 @@ class App:
         pg.display.set_caption("Pygame App")
         self.clock = pg.time.Clock()
         self.debugFont = pg.font.SysFont("monospace", 15)
+        self.hudFont = pg.font.SysFont("freesansbold", 15)
+        self.hudFontBold = pg.font.SysFont("freesansbold", 15)
+        self.hudFontBold.set_bold(True)
+        self.bgColor = pg.Color("gray")
         self.running = True
         self.paused = True
         self.forceTick = False
+        self.forceRender = False
         self.debug = True
         self.help = True
-        self.ticks = -1
+        self.frames = -1
         self.debugTextLenght = 0
         self.helpTextLenght = 0
         self.updateTime = 0
         self.renderTime = 0
 
     def gameloop(self):
-        self.screen.fill(pg.Color("grey"))
         while self.running:
             self.eventHandler()
             if not self.paused or self.forceTick:
@@ -68,23 +72,26 @@ class App:
                 # d key to toggle debug
                 elif event.key == pg.K_d:
                     self.debug = not self.debug
+                    self.forceRender = True
                 # h key to toggle help
                 elif event.key == pg.K_h:
                     self.help = not self.help
+                    self.forceRender = True
                 # p key to pause
                 elif event.key == pg.K_p:
                     self.paused = not self.paused
+                    self.forceRender = True
                 # s key to force tick
                 elif event.key == pg.K_s and self.paused:
                     self.forceTick = True
 
     def update(self):
-        pass
-        self.ticks += 1
+        self.frames += 1
         self.forceTick = False
 
     def render(self):
         toUpdate = []
+        self.screen.fill(self.bgColor)
         # Render objects
         toUpdate.extend(self.renderObjects())
         # Render debug text
@@ -93,22 +100,25 @@ class App:
         # Render help text
         if self.help:
             toUpdate.extend(self.renderHelpText())
+        # Render HUD
+        toUpdate.extend(self.renderHUD())
         # Remove None values
         while None in toUpdate:
             toUpdate.remove(None)
         # Update display
-        if len(toUpdate) == 0 or (self.debug and len(toUpdate) == 1):
+        if len(toUpdate) == 0 or (self.debug and len(toUpdate) == 1) or self.forceRender or self.frames < 0:
             pg.display.update()
+            self.forceRender = False
         else:
             pg.display.update(toUpdate)
 
     def renderDebugText(self) -> list[pg.Rect]:
         color =  (255, 0, 0)
-        fpsText = self.debugFont.render(f"FPS: {round(self.clock.get_fps(), 1)} / {self.fps}", True, color)
-        timeText = self.debugFont.render(f"A: {round(self.clock.get_rawtime(), 3)}ms", True, color)
-        updateText = self.debugFont.render(f"U: {round(self.updateTime, 3)}ms", True, color)
-        renderText = self.debugFont.render(f"R: {round(self.renderTime, 3)}ms", True, color)
-        tickText = self.debugFont.render(f"Tick: {self.ticks}", True, color)
+        fpsText = self.debugFont.render(f"   FPS: {round(self.clock.get_fps(), 1)}|{self.fps}", True, color)
+        timeText = self.debugFont.render(f" Frame: {round(self.clock.get_rawtime(), 3)}ms", True, color)
+        updateText = self.debugFont.render(f"Update: {round(self.updateTime, 3)}ms", True, color)
+        renderText = self.debugFont.render(f"Render: {round(self.renderTime, 3)}ms", True, color)
+        tickText = self.debugFont.render(f" Ticks: {self.frames}", True, color)
         lenghts = [fpsText.get_width(), updateText.get_width(), renderText.get_width(), timeText.get_width(), tickText.get_width()]
         lenght = max(lenghts)
         if self.debugTextLenght < lenght:
@@ -125,7 +135,7 @@ class App:
 
     def renderHelpText(self) -> list[pg.Rect]:
         color =  (255, 0, 0)
-        pos = (self.winSize[0] - self.helpTextLenght - 5, 5)
+        pos = (self.winSize[0] - self.helpTextLenght - 10, 5)
         lines = []
         lines.append(self.debugFont.render("ESC - Close window", True, color))
         lines.append(self.debugFont.render("+   - Increase FPS", True, color))
@@ -144,6 +154,18 @@ class App:
         # Render help frame
         self.screen.blit(helpFrame, pos)
         return [pg.Rect(pos[0], pos[1], helpFrame.get_width(), helpFrame.get_height()), ]
+
+    def renderHUD(self) -> list[pg.Rect]:
+        toUpdate = []
+        color =  (255, 0, 0)
+        if self.paused:
+            posPauseText = (self.winSize[0] // 2, 5)
+            pauseText = self.hudFontBold.render("PAUSED", True, color)
+            pauseTextFrame = pg.Surface((pauseText.get_width(), pauseText.get_height()))
+            pauseTextFrame.blit(pauseText, (0, 0))
+            self.screen.blit(pauseTextFrame, posPauseText)
+            toUpdate.append(pg.Rect(posPauseText[0] - pauseTextFrame.get_width() // 2, posPauseText[1], pauseTextFrame.get_width(), pauseTextFrame.get_height()))
+        return toUpdate
 
     def renderObjects(self) -> list[pg.Rect]:
         toUpdate = []
