@@ -12,8 +12,7 @@ from src.schemes import User
 from src import database as db
 
 
-logger = getLogger("logger")
-
+logger = getLogger(__name__)
 router = APIRouter()
 
 with open("secrets/private.key", "rb") as f:
@@ -28,6 +27,7 @@ def getUser(username: str) -> User | None:
     if user is None:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
     return User(**user)
+
 
 def checkUser(user: User) -> bool:
     if not user.disabled:
@@ -60,10 +60,8 @@ def generateToken(user: User, usableTime: int = 30) -> str:
         "exp": usableTime,
         "level": user.level
     }
-
     with open("secrets/secret.txt", "rb") as f:
         secret = b64decode(f.read())
-
     encoded_jwt = jwt.encode(data, secret)
     return encoded_jwt
 
@@ -71,7 +69,6 @@ def generateToken(user: User, usableTime: int = 30) -> str:
 @router.post("/login")
 async def login(formData: Annotated[OAuth2PasswordRequestForm, Depends()]) -> dict:
     user = getUser(formData.username)
-
     if user is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -90,7 +87,5 @@ async def login(formData: Annotated[OAuth2PasswordRequestForm, Depends()]) -> di
             detail="Incorrect username or password",
             headers={"WWW-Authenticate": "Bearer"}
         )
-
     token = generateToken(user)
-
     return {"access_token": token, "token_type": "bearer"}

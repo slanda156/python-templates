@@ -12,6 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 def main() -> None:
+    a = 10 / 0
     pass
 
 

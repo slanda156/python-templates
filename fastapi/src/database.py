@@ -2,7 +2,7 @@ from sqlmodel import Field, SQLModel, create_engine
 from typing import Optional
 
 
-engine = create_engine("mysql+pymysql://bot:bottlyB0t@127.0.0.1:3306/userdb")
+engine = create_engine("mysql+pymysql://bot:pw@127.0.0.1:3306/userdb")
 
 
 class User(SQLModel):

@@ -1,9 +1,12 @@
 import logging
+import traceback
 import tkinter as tk
-import tkinter.ttk as ttk
+import tkinter.messagebox as tkMessageBox
+
+from src.widgets import Widget
 
 
-logger = logging.getLogger("logger")
+logger = logging.getLogger(__name__)
 
 
 class App(tk.Tk):
@@ -17,4 +20,11 @@ class App(tk.Tk):
 
 
     def createWidgets(self) -> None:
-        pass
+        self.widget = Widget(self)
+
+
+    def report_callback_exception(self, *args):
+        err = traceback.format_exception(*args)
+        strErr = "\n".join(err)
+        logger.error(strErr)
+        tkMessageBox.showerror("Exception", str(err))

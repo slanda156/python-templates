@@ -13,11 +13,6 @@ handlers:
     formatter: complex
     filename: "log.log"
     mode: w
-loggers:
-  logger:
-    level: DEBUG
-    handlers: [console, file]
-    propagate: no
 root:
   level: INFO
   handlers: [console, file]
