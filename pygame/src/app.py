@@ -114,10 +114,10 @@ class App:
 
     def renderDebugText(self) -> list[pg.Rect]:
         color =  (255, 0, 0)
-        fpsText = self.debugFont.render(f"   FPS: {round(self.clock.get_fps(), 1)}|{self.fps}", True, color)
-        timeText = self.debugFont.render(f" Frame: {round(self.clock.get_rawtime(), 3)}ms", True, color)
-        updateText = self.debugFont.render(f"Update: {round(self.updateTime, 3)}ms", True, color)
-        renderText = self.debugFont.render(f"Render: {round(self.renderTime, 3)}ms", True, color)
+        fpsText = self.debugFont.render(f"   FPS: {self.clock.get_fps():.1f}|{self.fps}", True, color)
+        timeText = self.debugFont.render(f" Frame: {self.clock.get_rawtime():06.3f}ms | {1000 / self.fps:.1f}ms", True, color)
+        updateText = self.debugFont.render(f"Update: {self.updateTime:06.3f}ms", True, color)
+        renderText = self.debugFont.render(f"Render: {self.renderTime:06.3f}ms", True, color)
         tickText = self.debugFont.render(f" Ticks: {self.frames}", True, color)
         lenghts = [fpsText.get_width(), updateText.get_width(), renderText.get_width(), timeText.get_width(), tickText.get_width()]
         lenght = max(lenghts)
