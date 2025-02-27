@@ -1,2 +1,4 @@
 PyYAML
+coloredlogs
+pytest
 pygame-ce

@@ -2,13 +2,15 @@ site_name: My Docs
 
 theme:
   name: "material"
+  palette:
+    scheme: "slate"
+  features:
+    - search.suggest
+    - search.highlight
 
 plugins:
   - mkdocstrings
-
-nav:
-  - index.md
-  - tutorials.md
-  - how-to-guides.md
-  - reference.md
-  - explanation.md
+  - search
+  - awesome-pages
+  - git-revision-date-localized:
+      enable_creation_date: true

@@ -6,6 +6,8 @@ import pygame as pg
 
 logger = getLogger(__name__)
 
+logger.warning("App module loaded")
+
 
 class App:
     def __init__(self, fps: int, winSize: tuple[int, int], fullscreen: bool = False):
