@@ -3,5 +3,7 @@ coloredlogs
 fastapi
 uvicorn
 sqlmodel
-jose
+python-jose
 rsa
+PyMySQL
+python-multipart
