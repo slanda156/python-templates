@@ -1,4 +1,5 @@
 from logging import getLogger
+
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlmodel import Session, select
@@ -22,7 +23,7 @@ with open("secrets/private.key", "rb") as f:
 def getUser(username: str) -> User | None:
     with Session(db.engine) as session:
         stmt = select(db.User)#.where(db.User.username == username)
-        result = session.execute(stmt)
+        result = session.exec(stmt)
         user = result.first()
     if user is None:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
