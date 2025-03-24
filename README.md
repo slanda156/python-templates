@@ -1,4 +1,5 @@
 # Python templates
+
 > A collection of python templates.
 
 ![GitHub contributors](https://img.shields.io/github/contributors/slanda156/python-templates)
@@ -20,8 +21,3 @@ This is a collection of diffrent templates for my most used modules.
     ```sh
     pip install -r requirements.txt
     ```
-
-## Release History
-
-* 0.0.1
-    * Work in progress
