@@ -13,12 +13,6 @@ handlers:
     class: logging.StreamHandler
     formatter: simple
 
-  file:
-    class: logging.FileHandler
-    formatter: complex
-    filename: "log.log"
-    mode: w
-
   rotating:
     class: logging.handlers.RotatingFileHandler
     formatter: complex
