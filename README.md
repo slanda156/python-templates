@@ -5,7 +5,9 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/slanda156/python-templates)
 ![GitHub Repo stars](https://img.shields.io/github/stars/slanda156/python-templates?style=plastic)
 
-This is a collection of diffrent templates for my most used modules.
+This is a collection of different templates for my most used modules.
+
+fastapi: This template is still in development and doesn't work out of the box yet.
 
 ## Installation
 
@@ -21,12 +23,12 @@ This is a collection of diffrent templates for my most used modules.
     cd your-project-name
     ```
 
-3. Create a virtual enviroment
+3. Create a virtual environment
 
     venv:
 
     ```sh
-    venv .venv
+    python -m venv .venv
     ```
 
     virtualenv (faster creation):
@@ -35,7 +37,7 @@ This is a collection of diffrent templates for my most used modules.
     virtualenv .venv
     ```
 
-4. Activate the enviroment
+4. Activate the environment
 
     Linux:
 
@@ -46,7 +48,7 @@ This is a collection of diffrent templates for my most used modules.
     Windows:
 
     ```sh
-    .venv\bin\activate.bat
+    .venv\Scripts\activate.bat
     ```
 
 5. Install pip-tools
@@ -67,7 +69,7 @@ This is a collection of diffrent templates for my most used modules.
     pip-compile requirements-docs.in
     ```
 
-7. Syncronise your virutal enviroment
+7. Synchronize your virtual environment
 
     ```sh
     pip-sync
@@ -90,3 +92,17 @@ This is a collection of diffrent templates for my most used modules.
     ```sh
     mkdocs build
     ```
+
+## Meta
+
+Christoph Heil – <christoph.heil156@gmail.com>
+
+Distributed under the MIT license. See [``License``](LICENSE) for more information.
+
+[https://github.com/slanda156/python-templates](https://github.com/slanda156/python-templates)
+
+## Contributing
+
+Any ideas or bug reports are welcome as issues or comments.
+
+If you want to contribute, please fork the repository and create a pull request.
