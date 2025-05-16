@@ -108,3 +108,113 @@ Distributed under the MIT license. See [``License``](LICENSE) for more informati
 Any ideas or bug reports are welcome as issues or comments.
 
 If you want to contribute, please fork the repository and create a pull request.
+
+## Deutsch
+
+### Python-Vorlagen
+
+> Eine Sammlung von Python-Vorlagen.
+
+Dies ist eine Sammlung verschiedener Vorlagen für meine am häufigsten verwendeten Module.
+
+fastapi: Diese Vorlage befindet sich noch in der Entwicklung und funktioniert noch nicht direkt.
+
+### Installation und Verwendung
+
+1. Kopiere den Ordner der gewünschten Vorlage
+
+    ```sh
+    cp template-folder dein-projekt-name
+    ```
+
+2. Wechsle in diesen neuen Ordner
+
+    ```sh
+    cd dein-projekt-name
+    ```
+
+3. Erstelle eine virtuelle Umgebung
+
+    venv:
+
+    ```sh
+    python -m venv .venv
+    ```
+
+    virtualenv (schnellere Erstellung):
+
+    ```sh
+    virtualenv .venv
+    ```
+
+4. Aktiviere die Umgebung
+
+    Linux:
+
+    ```sh
+    source .venv/bin/activate
+    ```
+
+    Windows:
+
+    ```sh
+    .venv\Scripts\activate.bat
+    ```
+
+5. Installiere pip-tools
+
+    ```sh
+    pip install pip-tools
+    ```
+
+6. Erstelle die requirements-Dateien
+
+    ```sh
+    pip-compile
+    ```
+
+    Dokumentation:
+
+    ```sh
+    pip-compile requirements-docs.in
+    ```
+
+7. Synchronisiere deine virtuelle Umgebung
+
+    ```sh
+    pip-sync
+    ```
+
+8. Installiere die Dokumentationsmodule (Optional)
+
+    ```sh
+    pip install -r requirements-docs.txt
+    ```
+
+9. Starte die Dokumentation lokal (Optional)
+
+    ```sh
+    mkdocs serve
+    ```
+
+    Öffne deinen Browser und gehe zu [127.0.0.1:8000](http://127.0.0.1:8000)
+
+10. Baue die Dokumentation (Optional)
+
+    ```sh
+    mkdocs build
+    ```
+
+### Meta
+
+Christoph Heil – <christoph.heil156@gmail.com>
+
+Veröffentlicht unter der MIT-Lizenz. Siehe [``License``](LICENSE) für weitere Informationen.
+
+[https://github.com/slanda156/python-templates](https://github.com/slanda156/python-templates)
+
+### Mitwirken
+
+Ideen oder Fehlerberichte sind als Issues oder Kommentare willkommen.
+
+Wenn du beitragen möchtest, forke das Repository und erstelle einen Pull Request.
