@@ -9,7 +9,7 @@ This is a collection of different templates for my most used modules.
 
 fastapi: This template is still in development and doesn't work out of the box yet.
 
-## Installation
+## Installation and Usage
 
 1. Copy the folder of the template you want to use
 
@@ -86,6 +86,8 @@ fastapi: This template is still in development and doesn't work out of the box y
     ```sh
     mkdocs serve
     ```
+
+    Open your browser and go to [127.0.0.1:8000](http://127.0.0.1:8000)
 
 10. Build the docs (Optional)
 
