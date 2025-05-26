@@ -7,7 +7,7 @@
 
 This is a collection of different templates for my most used modules.
 
-fastapi: This template is still in development and doesn't work out of the box yet.
+**fastapi**: This template is still in development and doesn't work out of the box yet.
 
 ## Installation and Usage
 
