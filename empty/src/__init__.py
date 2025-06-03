@@ -1,3 +1,8 @@
+# Empty Project Template
+# Author: 		Christoph Heil (https://github.com/slanda156)
+# Repository:	https://github.com/slanda156/python-templates
+# License:		MIT License (https://github.com/slanda156/python-templates/blob/main/LICENSE)
+
 # Import built-in modules
 import yaml
 import logging
