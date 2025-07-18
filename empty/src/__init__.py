@@ -31,8 +31,8 @@ with open(loggingConfigPath) as f:
     install(level=logLevel, fmt=logFormat, datefmt=logDatefmt)
 
 # Get logger
-logger = logging.getLogger(__name__)
+rootLogger = logging.getLogger()
 # Do rollover
-for handler in logger.handlers:
+for handler in rootLogger.handlers:
     if isinstance(handler, logging.handlers.RotatingFileHandler):
         handler.doRollover()
