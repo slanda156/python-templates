@@ -13,7 +13,9 @@ from pathlib import Path
 from coloredlogs import install
 
 # Configer Logging
-with open("logger.yaml") as f:
+rootPath = Path(__file__).parent.parent
+loggingConfigPath = rootPath / "logger.yaml"
+with open(loggingConfigPath) as f:
     # Load config
     loggerConfig = yaml.safe_load(f.read())
     # Check folder path
