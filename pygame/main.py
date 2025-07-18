@@ -4,6 +4,7 @@ import logging
 # Import third-party modules
 
 # Import local modules
+from src import createCrashLog
 from src.app import App
 
 logger = logging.getLogger(__name__)
@@ -18,6 +19,7 @@ if __name__ == "__main__":
     try:
         main()
     # Log any exceptions
-    except Exception:
+    except Exception as e:
         logger.critical("An unhandled exception occurred:", exc_info=True)
+        createCrashLog(e)
         raise

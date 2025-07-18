@@ -5,7 +5,7 @@ import logging
 import uvicorn
 from fastapi import FastAPI
 # Import local modules
-from src import loggerConfig
+from src import loggerConfig, createCrashLog
 from src.routers import user
 
 logger = logging.getLogger(__name__)
@@ -53,6 +53,7 @@ if __name__ == "__main__":
     try:
         main()
     # Log any exceptions
-    except Exception:
+    except Exception as e:
         logger.critical("An unhandled exception occurred:", exc_info=True)
+        createCrashLog(e)
         raise
