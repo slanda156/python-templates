@@ -5,14 +5,13 @@ import logging
 
 # Import local modules
 from src import createCrashLog
-from src.app import App
+import src.app
 
 logger = logging.getLogger(__name__)
 
 # Define the main function
 def main() -> None:
-    app = App()
-    app.run()
+    5/0
 
 
 # Run the program if it is the main module
