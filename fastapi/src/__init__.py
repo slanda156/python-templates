@@ -1,4 +1,4 @@
-# Empty Project Template
+# FastAPI Project Template
 # Author: 		Christoph Heil (https://github.com/slanda156)
 # Repository:	https://github.com/slanda156/python-templates
 # License:		MIT License (https://github.com/slanda156/python-templates/blob/main/LICENSE)
@@ -49,9 +49,8 @@ def createCrashLog(e: Exception) ->  None:
     """
     Function to create a crash log.
     """
-    crashLogPath = Path("logs")
-    if not crashLogPath.exists():
-        crashLogPath = Path.cwd()
+    crashLogPath = Path("logs/crash_logs/")
+    crashLogPath.mkdir(parents=True, exist_ok=True)
     crashLogDateTime = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     crashLogPath = crashLogPath / f"crash_{crashLogDateTime}.log"
     crashLog = ""
