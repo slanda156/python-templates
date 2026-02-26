@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 from logging import getLogger
 from packaging.version import Version
@@ -11,6 +12,24 @@ VERSION = Version("1.2.0dev1")
 logger = getLogger(__name__)
 DICTDEFAULTS: dict[str, dict[Any, Any]] = {}
 CONFIGFILE = Path.cwd() / "config.json"
+BASICURLRE = re.compile(
+    r"^(?:(?:http|https)://)"
+    r"(?:"
+      r"(?:"
+        r"(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+"
+        r"[A-Za-z]{2,63}"
+      r")"
+      r"|"
+      r"(?:"
+        r"(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\."
+        r"(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\."
+        r"(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\."
+        r"(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)"
+      r")"
+    r")"
+    r"(?::(?:6553[0-5]|655[0-2]\d|65[0-4]\d\d|6[0-4]\d{3}|[1-5]?\d{1,4}))?"
+    r"$"
+)
 
 
 class Config(BaseModel):
@@ -72,6 +91,11 @@ class Config(BaseModel):
             config = cls(**data)
             config.save()
             return config
+
+
+    @staticmethod
+    def _validateBasicUrl(url: str) -> bool:
+        return BASICURLRE.fullmatch(url) is not None
 
 
     @classmethod
