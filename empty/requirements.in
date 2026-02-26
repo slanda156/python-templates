@@ -3,3 +3,5 @@ coloredlogs
 pytest
 GPUtil
 py-cpuinfo
+packaging
+pydantic
