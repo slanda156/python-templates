@@ -8,9 +8,11 @@ import json
 from pydantic import BaseModel, Field, field_validator, ValidationError
 
 
-VERSION = Version("1.2.0dev1")
+VERSION = Version("0.0.0dev0")
 logger = getLogger(__name__)
-DICTDEFAULTS: dict[str, dict[Any, Any]] = {}
+DICTDEFAULTS: dict[str, dict[Any, Any]] = {
+
+}
 CONFIGFILE = Path.cwd() / "config.json"
 BASICURLRE = re.compile(
     r"^(?:(?:http|https)://)"
